@@ -6,7 +6,7 @@ import CardProduct from "../components/CardProduct";
 import Navbar from "../components/Navbar";
 import ReactPaginate from "react-paginate";
 
-const crud = () => {
+const Product = () => {
   const [data, setData] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -83,4 +83,4 @@ const crud = () => {
   );
 };
 
-export default crud;
+export default Product;
