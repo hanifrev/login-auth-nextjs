@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [remember, setRemember] = useState(false);
+  // const [remember, setRemember] = useState(false);
 
   const router = useRouter();
 
@@ -25,7 +25,7 @@ export default function Home() {
       .then((res) => {
         // console.log(res);
         Cookies.set("access_token", res.data.token);
-        router.push("/crud");
+        router.push("/Product");
       })
       .catch((error) => {
         console.error("error >>>", error);

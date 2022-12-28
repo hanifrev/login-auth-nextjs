@@ -1,0 +1,11 @@
+#card {
+  width: 12rem;
+  border: 1px solid;
+  border-radius: 6px;
+
+  .imgCard {
+    width: 14rem;
+    height: 100px;
+    object-fit: cover;
+  }
+}

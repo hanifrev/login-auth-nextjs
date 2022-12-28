@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <div id="navbar" className="px-3 bg-sky-700">
-      <div>CRUD</div>
+      <div className="text-white font-bold">Products</div>
       <div>
         <button
           className="text-white hover:text-red-500 font-bold w-24"
