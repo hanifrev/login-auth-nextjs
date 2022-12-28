@@ -4,17 +4,20 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import CardProduct from "../components/CardProduct";
 import Navbar from "../components/Navbar";
+import ReactPaginate from "react-paginate";
 
 const crud = () => {
   const [data, setData] = useState("");
+  const [currentPage, setCurrentPage] = useState(0);
 
   const router = useRouter();
+  const PER_PAGE = 15;
 
   useEffect(() => {
     const getData = async () => {
       const token = `Bearer ${Cookies.get("access_token")}`;
       const data = await axios
-        .get(`${process.env.NEXT_PUBLIC_API}/auth/products`, {
+        .get(`${process.env.NEXT_PUBLIC_API}/auth/products?limit=100`, {
           headers: {
             Authorization: token,
           },
@@ -42,17 +45,40 @@ const crud = () => {
 
   console.log(data);
 
+  const handlePageClick = ({ selected: selectedPage }) => {
+    console.log("selectedPage", selectedPage);
+    setCurrentPage(selectedPage);
+  };
+
+  const offset = currentPage * PER_PAGE;
+
+  const pageCount = Math.ceil(data.length / PER_PAGE);
+
   return (
     <div>
       <Navbar />
-      <div className="flex flex-wrap justify-center gap-3 pt-3">
+      <div className="flex flex-wrap justify-center gap-3 pt-3 max-w-[1366px] mx-auto">
         {data &&
-          data.map((x) => {
+          data.slice(offset, offset + PER_PAGE).map((x) => {
             return (
               <CardProduct key={x.id} title={x.title} image={x.thumbnail} />
             );
           })}
       </div>
+      <ReactPaginate
+        previousLabel={" "}
+        nextLabel={" "}
+        previousClassName={"prev"}
+        breakLabel={"..."}
+        breakClassName={"break-me"}
+        pageCount={pageCount}
+        marginPagesDisplayed={1}
+        pageRangeDisplayed={1}
+        onPageChange={handlePageClick}
+        containerClassName={"pagination"}
+        subContainerClassName={"pages pagination"}
+        activeClassName={"active"}
+      />
     </div>
   );
 };

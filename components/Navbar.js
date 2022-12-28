@@ -10,15 +10,17 @@ const Navbar = () => {
   };
 
   return (
-    <div id="navbar" className="px-3 bg-sky-700">
-      <div className="text-white font-bold">Products</div>
-      <div>
-        <button
-          className="text-white hover:text-red-500 font-bold w-24"
-          onClick={handleSignout}
-        >
-          Log Out
-        </button>
+    <div className="px-3 bg-sky-700">
+      <div id="navbar">
+        <div className="text-white font-bold">Products</div>
+        <div>
+          <button
+            className="text-white hover:text-red-500 font-bold w-24"
+            onClick={handleSignout}
+          >
+            Log Out
+          </button>
+        </div>
       </div>
     </div>
   );
